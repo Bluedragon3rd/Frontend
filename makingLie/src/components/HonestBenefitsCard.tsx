@@ -1,61 +1,84 @@
-type KPI = {
-  title: string;
-  value: string; // "0%" or "↑"
-  description: string;
-};
+const HonestBenefitsCard = () => {
+  // 이미지에 있는 데이터 정의
+  const benefits = [
+    {
+      title: "기억 부담",
+      value: "0%",
+      desc: "복잡한 설정을 기억할 필요가 없습니다",
+    },
+    {
+      title: "모순 위험",
+      value: "0%",
+      desc: "후속 질문 걱정이 사라집니다",
+    },
+    {
+      title: "신뢰도",
+      value: "↑",
+      desc: "장기적으로 더 건강한 관계",
+    },
+  ];
 
-type Props = {
-  items: KPI[];
-};
-
-const HonestBenefitsCard = ({ items }: Props) => {
   return (
     <section
       className="
-        w-full
-        rounded-3xl
-        border-2 border-green-200
+        w-[806px]
+        rounded-[32px]
         bg-white
-        px-12 py-12
-        shadow-[0_16px_40px_rgba(0,0,0,0.10)]
+        p-10
+        shadow-[0_4px_20px_rgba(0,0,0,0.05)]
+        border border-gray-100
       "
     >
-      {/* Header */}
-      <h2 className="mb-12 text-center text-[34px] font-extrabold tracking-[-0.03em] text-slate-900">
+      {/* 헤더 */}
+      <h2 className="mb-10 text-center text-[28px] font-bold text-slate-900">
         솔직한 대화의 장점
       </h2>
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {items.map((item, idx) => (
+      {/* 3개 카드 가로 배치 영역 (핵심!) */}
+      <div className="grid grid-cols-3 gap-6">
+        {benefits.map((item, idx) => (
           <div
             key={idx}
             className="
-              rounded-3xl
-              border-2 border-green-200
-              bg-green-50
-              px-10 py-10
+              flex flex-col items-center
+              rounded-[24px]
+              border-2 border-[#E8FAF0] /* 연한 초록 테두리 */
+              bg-[#F5FBF7]             /* 아주 연한 초록 배경 */
+              py-8 px-4
               text-center
             "
           >
-            {/* Check */}
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-4 border-green-300 bg-green-100">
-              <span className="text-[36px] text-green-600">✓</span>
+            {/* 체크 아이콘 원 */}
+            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#D1F2DE]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={3}
+                stroke="currentColor"
+                className="w-8 h-8 text-[#22C55E]"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 12.75l6 6 9-13.5"
+                />
+              </svg>
             </div>
 
-            {/* Title */}
-            <div className="mt-8 text-[26px] font-bold tracking-[-0.02em] text-slate-900">
+            {/* 제목 */}
+            <div className="mb-2 text-[20px] font-bold text-slate-900">
               {item.title}
             </div>
 
-            {/* Value */}
-            <div className="mt-6 text-[56px] font-extrabold tracking-[-0.04em] text-green-600">
+            {/* 값 (0%, ↑) */}
+            <div className="mb-4 text-[42px] font-extrabold text-[#22C55E] leading-none">
               {item.value}
             </div>
 
-            {/* Desc */}
-            <div className="mt-6 text-[20px] leading-relaxed tracking-[-0.01em] text-slate-600">
-              {item.description}
+            {/* 설명 */}
+            <div className="text-[15px] text-slate-500 leading-snug break-keep px-2">
+              {item.desc}
             </div>
           </div>
         ))}
