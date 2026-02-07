@@ -9,6 +9,7 @@ import HonestChoice from "./pages/HonestChoice";
 import MinigamePage from "./pages/MinigamePage";
 import GamePage from "./pages/GamePage";
 import GameResultPage from "./pages/GameResultPage";
+//버셀 배포용 주석
 const router = createBrowserRouter([
   {
     path: "/",
