@@ -103,7 +103,7 @@ const ResultPage = () => {
             <LieLevelCard level={5} />
           </div>
           <div className="flex-1">
-            <MemoryCostCard level="높음" />
+            <MemoryCostCard level={9} />
           </div>
         </div>
       </div>
