@@ -1,7 +1,12 @@
 import { create } from "zustand";
 
-export type ConditionType = "피곤" | "아픔" | "멘탈";
-export type TargetType = "FM 상사" | "공감형" | "눈치100단";
+export type ConditionType = "피곤" | "아픔" | "멘탈" | "멀쩡";
+export type TargetType =
+  | "FM 상사"
+  | "공감형"
+  | "눈치100단"
+  | "친한 친구"
+  | "회사 팀원";
 
 interface SituationState {
   whyLevel: number;

@@ -7,7 +7,7 @@ import Chip from "./Chip";
 const ConditionCard = () => {
   const { condition, setCondition } = useSituationStore();
 
-  const options: ConditionType[] = ["피곤", "아픔", "멘탈"];
+  const options: ConditionType[] = ["피곤", "아픔", "멘탈", "멀쩡"];
 
   return (
     <div
@@ -30,6 +30,7 @@ const ConditionCard = () => {
             {opt === "피곤" && "🥴 피곤"}
             {opt === "아픔" && "🤒 아픔"}
             {opt === "멘탈" && "😶 멘탈"}
+            {opt === "멀쩡" && "😄 멀쩡"}
           </Chip>
         ))}
       </div>
