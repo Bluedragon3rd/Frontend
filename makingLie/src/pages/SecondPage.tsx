@@ -8,7 +8,7 @@ export default function SecondPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#f6f7fb] to-[#f4f0ff] p-6 box-border">
+    <main className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-b from-[#f6f7fb] to-[#f4f0ff] pb-20">
       {/* 헤더 */}
       <div className="flex-none h-[60px] flex items-center justify-between w-full max-w-[800px] mx-auto mb-6">
         <button
@@ -52,6 +52,6 @@ export default function SecondPage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
