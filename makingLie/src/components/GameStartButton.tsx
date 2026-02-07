@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
-
-const GameStartButton = () => {
-  const navigate = useNavigate();
-
+interface GameStartButtonProps {
+  onClick?: () => void;
+}
+const GameStartButton = ({ onClick }: GameStartButtonProps) => {
   return (
     <button
-      onClick={() => navigate("/game")}
+      onClick={onClick}
       className="
         w-full
         rounded-3xl

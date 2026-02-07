@@ -1,12 +1,11 @@
-import { useNavigate } from "react-router-dom";
-
-const HonestTalkButton = () => {
-  const navigate = useNavigate();
-
+interface HonestTalkButtonProps {
+  onClick?: () => void;
+}
+const HonestTalkButton = ({ onClick }: HonestTalkButtonProps) => {
   return (
     <div>
       <button
-        onClick={() => navigate("/honest")}
+        onClick={onClick}
         className="
           w-[806px]
           h-[150px]
@@ -25,9 +24,7 @@ const HonestTalkButton = () => {
             🔥 정면 돌파하기
           </div>
 
-          <div className="text-[24px] text-green-700">
-            "오늘은 양심 ON"
-          </div>
+          <div className="text-[24px] text-green-700">"오늘은 양심 ON"</div>
         </div>
       </button>
     </div>

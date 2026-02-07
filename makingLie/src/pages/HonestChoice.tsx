@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 import RecommendedMessageBox from "../components/RecommendedMessageBox";
 import HonestBenefitsCard from "../components/HonestBenefitsCard";
 import SituationInsightCard from "../components/SituationInsightCard";
@@ -5,6 +7,18 @@ import BackToStartButton from "../components/BackToStartButton";
 import UseExcuseButton from "../components/UseExcuseButton";
 
 const HonestChoice = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // 🔥 ResultPage에서 넘긴 데이터
+  const message = location.state?.message as string | undefined;
+
+  // 직접 접근 방지 (보험)
+  if (!message) {
+    navigate("/");
+    return null;
+  }
+
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-b from-[#f6f7fb] to-[#f4f0ff] pb-20">
       {/* 1. 헤더 영역 */}
@@ -18,17 +32,17 @@ const HonestChoice = () => {
         </h3>
       </header>
 
-      {/* 2. 추천 메시지 카드 (녹색 테두리) */}
+      {/* 2. 추천 메시지 카드 (🔥 동적 데이터) */}
       <div className="mb-8">
-        <RecommendedMessageBox message="일정 조율이 필요해 다음으로 미루고 싶습니다" />
+        <RecommendedMessageBox message={message} />
       </div>
 
-      {/* 3. 솔직한 대화의 장점 (3단 카드) */}
+      {/* 3. 솔직한 대화의 장점 */}
       <div className="mb-8">
         <HonestBenefitsCard />
       </div>
 
-      {/* 4. 상황별 조언 카드 (파랑/분홍 2열 배치) */}
+      {/* 4. 상황별 조언 카드 */}
       <div className="w-[806px] flex flex-row gap-6 mb-8">
         <div className="flex-1">
           <SituationInsightCard
@@ -48,7 +62,7 @@ const HonestChoice = () => {
         </div>
       </div>
 
-      {/* 5. 하단 버튼 영역 (초록/흰색 2열 배치) */}
+      {/* 5. 하단 버튼 */}
       <div className="w-[806px] flex flex-row gap-6">
         <div className="flex-1 h-[80px]">
           <BackToStartButton />

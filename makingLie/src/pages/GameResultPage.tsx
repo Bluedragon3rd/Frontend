@@ -4,13 +4,13 @@ const GameResultPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 이전 페이지에서 넘겨준 점수 (없으면 0점 처리)
-  const score = location.state?.score || 0;
+  // 이전 페이지에서 넘겨준 데이터
+  const correctCount = location.state?.correctCount || 0;
   const totalQuestions = 3; // 총 문제 수
 
   // 점수에 따른 멘트 및 스타일 설정 함수
-  const getResultContent = (score: number) => {
-    switch (score) {
+  const getResultContent = (correctCount: number) => {
+    switch (correctCount) {
       case 3:
         return {
           emoji: "👑",
@@ -46,7 +46,7 @@ const GameResultPage = () => {
     }
   };
 
-  const result = getResultContent(score);
+  const result = getResultContent(correctCount);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#F9FAFB] px-4 pb-20">
@@ -58,7 +58,7 @@ const GameResultPage = () => {
         <div className="text-[80px] mb-4">{result.emoji}</div>
 
         <div className="text-[24px] font-bold text-slate-400 mb-2">
-          Score: {score} / {totalQuestions}
+          Score: {correctCount} / {totalQuestions}
         </div>
 
         {/* 메인 타이틀 */}
