@@ -5,6 +5,7 @@ import SecondPage from "./pages/SecondPage";
 import TestPage from "./pages/TestPage";
 import ResultPage from "./pages/ResultPage";
 import SimulationPage from "./pages/SimulationPage";
+import HonestChoice from "./pages/HonestChoice";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "simulation",
     element: <SimulationPage />,
+  },
+  {
+    path: "honest",
+    element: <HonestChoice />,
   },
 ]);
 function App() {

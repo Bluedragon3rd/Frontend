@@ -18,8 +18,8 @@ const WhyLevelCard = () => {
         className="w-full accent-blue-500 cursor-pointer h-2 bg-gray-200 rounded-lg appearance-none"
       />
       <div className="flex justify-between mt-2.5 font-bold text-sm">
-        <span className="text-blue-500">우발적</span>
-        <span className="text-red-500">반복적</span>
+        <span className="text-blue-500">무난함</span>
+        <span className="text-red-500">창의성</span>
       </div>
     </div>
   );
