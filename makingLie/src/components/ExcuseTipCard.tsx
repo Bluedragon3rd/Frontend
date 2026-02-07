@@ -15,18 +15,33 @@ const tips = [
 
 const ExcuseTipCard = () => {
   const [index, setIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true); // 👈 투명도 조절용 상태
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % tips.length);
-    }, 2500); // 2.5초마다 변경
+    const interval = setInterval(() => {
+      // 1. 먼저 글자를 숨깁니다 (Fade Out)
+      setIsVisible(false);
 
-    return () => clearInterval(timer);
+      // 2. 0.5초 뒤(사라진 후)에 글자를 바꾸고 다시 보여줍니다 (Fade In)
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % tips.length);
+        setIsVisible(true);
+      }, 500); // CSS transition 시간과 맞춰주세요 (duration-500)
+    }, 3000); // 3초마다 반복 (애니메이션 시간 포함해서 약간 늘림)
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="w-full max-w-[520px] bg-white rounded-[24px] px-8 py-6 shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
-      <div className="flex items-center gap-3 text-gray-800 text-[18px] font-medium transition-all">
+    <div className="w-full max-w-[520px] bg-white rounded-[24px] px-8 py-6 shadow-[0_10px_30px_rgba(0,0,0,0.08)] flex items-center justify-center min-h-[80px]">
+      <div
+        className={`
+          flex items-center gap-3 text-gray-800 text-[18px] font-medium 
+          transition-all duration-500 ease-in-out  {/* 👈 부드러운 전환 효과 핵심 */}
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"} 
+        `}
+      >
+        {/* opacity-0: 투명하게 / translate-y-2: 살짝 아래로 내려가며 사라짐 */}
         <span className="text-[22px]">💡</span>
         <span>{tips[index]}</span>
       </div>

@@ -1,9 +1,8 @@
-import ErrorBox from "../components/ErrorBox";
-
+import LoadingPage from "./LoadingPage";
 const TestPage = () => {
   return (
     <div className="flex justify-center items-center align-center h-screen">
-      <ErrorBox />
+      <LoadingPage />
     </div>
   );
 };
