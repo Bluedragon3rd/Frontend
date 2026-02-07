@@ -6,7 +6,8 @@ const MemoryCostCard = ({ level }: Props) => {
   return (
     <div
       className="
-        w-full
+        w-[339px]
+        h-[188px]
         rounded-3xl
         bg-white
         px-10 py-8
@@ -34,8 +35,8 @@ const MemoryCostCard = ({ level }: Props) => {
             level === "높음"
               ? "text-orange-600"
               : level === "중간"
-              ? "text-yellow-500"
-              : "text-green-500"
+                ? "text-yellow-500"
+                : "text-green-500"
           }
         `}
       >

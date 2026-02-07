@@ -1,10 +1,14 @@
-import GradationButton from "../components/GradationButton";
+import HonestTalkButton from "../components/HonestTalkButton";
+import LieLevelCard from "../components/LieLevelCard";
+import MemoryCostCard from "../components/MemoryCostCard";
 
 const TestPage = () => {
   return (
     <div>
       테스트 페이지 입니다
-      <GradationButton title="테스트 버튼" />
+      <LieLevelCard level={1} />
+      <HonestTalkButton />
+      <MemoryCostCard level="낮음" />
     </div>
   );
 };

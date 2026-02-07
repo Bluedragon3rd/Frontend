@@ -8,7 +8,8 @@ const HonestTalkButton = () => {
       <button
         onClick={() => navigate("/honest-talk")}
         className="
-          w-full
+          w-[806px]
+          h-[140px]
           rounded-2xl
           border-4 border-green-300
           bg-green-50
