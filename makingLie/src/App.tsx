@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage"; // 페이지 불러오기
 import FirstPage from "./pages/FirstPage";
 import SecondPage from "./pages/SecondPage";
 import TestPage from "./pages/TestPage";
+import ResultPage from "./pages/ResultPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     path: "test",
     element: <TestPage />,
   },
+  {
+    path: "result",
+    element: <ResultPage />,
+  }
 ]);
 function App() {
   return <RouterProvider router={router} />;
