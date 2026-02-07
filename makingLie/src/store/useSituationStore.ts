@@ -21,7 +21,7 @@ interface SituationState {
 
 export const useSituationStore = create<SituationState>((set) => ({
   // 초기값
-  whyLevel: 50,
+  whyLevel: 3,
   condition: null,
   target: null,
 
@@ -31,5 +31,5 @@ export const useSituationStore = create<SituationState>((set) => ({
   setTarget: (target) => set({ target }),
 
   // 초기화 함수
-  reset: () => set({ whyLevel: 50, condition: null, target: null }),
+  reset: () => set({ whyLevel: 3, condition: null, target: null }),
 }));

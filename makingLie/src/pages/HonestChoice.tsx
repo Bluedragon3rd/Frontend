@@ -14,7 +14,7 @@ const HonestChoice = () => {
           오늘은 쫌 솔직해지세요. 제발.
         </h1>
         <h3 className="text-[20px] font-medium text-gray-500 tracking-tight">
-          정직한 대화가 장기적으로 더 좋은 관계를 만듭니다
+          정직한 대화가 장기적으로 더 좋은 관계를 만듭니다.
         </h3>
       </header>
 
