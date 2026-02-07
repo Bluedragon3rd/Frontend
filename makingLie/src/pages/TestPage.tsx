@@ -1,14 +1,9 @@
-import HonestTalkButton from "../components/HonestTalkButton";
-import LieLevelCard from "../components/LieLevelCard";
-import MemoryCostCard from "../components/MemoryCostCard";
+import ErrorBox from "../components/ErrorBox";
 
 const TestPage = () => {
   return (
-    <div>
-      테스트 페이지 입니다
-      <LieLevelCard level={1} />
-      <HonestTalkButton />
-      <MemoryCostCard level="낮음" />
+    <div className="flex justify-center items-center align-center h-screen">
+      <ErrorBox />
     </div>
   );
 };
