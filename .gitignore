@@ -1,0 +1,19 @@
+# 의존성 모듈 (가장 중요)
+node_modules/
+
+# 빌드 결과물
+dist/
+build/
+
+# 환경 변수 (API KEY 포함되므로 절대 금지)
+.env
+.env.local
+.env.*
+
+# OS 파일 (Mac/Windows)
+.DS_Store
+Thumbs.db
+
+# 에디터 설정
+.vscode/
+.idea/
