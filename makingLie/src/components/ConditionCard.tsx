@@ -5,20 +5,27 @@ import {
 import Chip from "./Chip";
 
 const ConditionCard = () => {
-  // ⭐️ Zustand 연결
   const { condition, setCondition } = useSituationStore();
 
   const options: ConditionType[] = ["피곤", "아픔", "멘탈"];
 
   return (
-    <div className="bg-white rounded-[18px] p-5 shadow-[0_14px_28px_rgba(0,0,0,0.06)]">
-      <div className="text-lg font-black mb-3.5 text-gray-900">컨디션</div>
-      <div className="flex flex-wrap gap-3">
+    <div
+      className="
+      w-full h-full 
+      bg-white rounded-[32px] p-8 shadow-[0_14px_28px_rgba(0,0,0,0.06)]
+      flex flex-col justify-center
+    "
+    >
+      <div className="text-[22px] font-black mb-6 text-gray-900">컨디션</div>
+
+      {/* 칩들 간격도 gap-3 -> gap-4로 살짝 넓혔습니다 */}
+      <div className="flex flex-wrap gap-4">
         {options.map((opt) => (
           <Chip
             key={opt}
-            active={condition === opt} // store 값과 비교
-            onClick={() => setCondition(opt)} // action 실행
+            active={condition === opt}
+            onClick={() => setCondition(opt)}
           >
             {opt === "피곤" && "🥴 피곤"}
             {opt === "아픔" && "🤒 아픔"}
