@@ -1,93 +1,99 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { postQuestionAnswer, type QuestionResponse } from "../api/questionApi";
 
-// 데이터 타입 정의
-export type QuestionData = {
-  id: number;
-  question: string;
-  options: { text: string; isCorrect: boolean }[];
-};
+// UI 관리를 위해 확장된 타입
+interface EnrichedQuestion extends QuestionResponse {
+  options: Array<
+    QuestionResponse["options"][0] & {
+      isCorrect: boolean;
+    }
+  >;
+  userSelectedIdx: number | null; // 사용자가 선택한 번호를 기록
+}
 
-export const useGameLogic = () => {
+export const useGameLogic = (initialQuestion: QuestionResponse) => {
   const navigate = useNavigate();
+  const mutation = useMutation({
+    mutationFn: (answer: string) => postQuestionAnswer(answer),
+  });
 
-  // 1. 상태 관리
-  const [questions, setQuestions] = useState<QuestionData[]>([]);
+  // 데이터 가공: score가 가장 높은 것을 정답으로 처리
+  const enrichQuestion = (q: QuestionResponse): EnrichedQuestion => {
+    const maxScore = Math.max(...q.options.map((o) => o.score));
+    return {
+      ...q,
+      userSelectedIdx: null,
+      options: q.options.map((opt) => ({
+        ...opt,
+        isCorrect: opt.score === maxScore,
+      })),
+    };
+  };
+
+  const [questions, setQuestions] = useState<EnrichedQuestion[]>([
+    enrichQuestion(initialQuestion),
+  ]);
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [score, setScore] = useState(0); // 👈 점수 상태 추가
 
-  // 2. 데이터 로드 (Mock Data)
-  useEffect(() => {
-    const mockQuestions: QuestionData[] = [
-      {
-        id: 1,
-        question: "상사가 '지금 어디야?' 라고 물었을 때, 가장 적절한 대처는?",
-        options: [
-          { text: "솔직하게 PC방이라고 말한다.", isCorrect: false },
-          {
-            text: "병원 진료 대기 중이라고 구체적으로 말한다.",
-            isCorrect: true,
-          },
-          { text: "일단 무시하고 나중에 연락한다.", isCorrect: false },
-        ],
-      },
-      {
-        id: 2,
-        question: "지각 사유를 물어볼 때 피해야 할 답변은?",
-        options: [
-          { text: "늦잠 잤습니다.", isCorrect: true }, // 피해야 할 답변이 정답
-          { text: "배탈이 나서 화장실에 있었습니다.", isCorrect: false },
-          { text: "가족에게 급한 일이 생겼습니다.", isCorrect: false },
-        ],
-      },
-      {
-        id: 3,
-        question: "보고서가 늦었을 때 핑계로 가장 좋은 것은?",
-        options: [
-          { text: "그냥 까먹었습니다.", isCorrect: false },
-          {
-            text: "자료 조사가 더 필요해서 퀄리티를 높이고 있습니다.",
-            isCorrect: true,
-          },
-          { text: "하기 싫어서 미뤘습니다.", isCorrect: false },
-        ],
-      },
-    ];
+  // 옵션 클릭 시 상태 저장
+  const handleOptionClick = (idx: number, correct: boolean) => {
+    if (selectedOption !== null) return;
 
-    // 에러 방지를 위해 setTimeout 사용
-    const timer = setTimeout(() => setQuestions(mockQuestions), 100);
-    return () => clearTimeout(timer);
-  }, []);
+    setSelectedOption(idx);
+    setIsCorrect(correct);
 
-  // 3. 답변 선택 핸들러
-  const handleOptionClick = (index: number, isAnswer: boolean) => {
-    if (selectedOption !== null) return; // 이미 선택했으면 중복 클릭 방지
-
-    setSelectedOption(index);
-    setIsCorrect(isAnswer);
-
-    // 👈 정답이면 점수 1점 추가
-    if (isAnswer) {
-      setScore((prev) => prev + 1);
-    }
+    // 현재 문제의 선택 기록을 업데이트
+    setQuestions((prev) => {
+      const newQuestions = [...prev];
+      newQuestions[currentStep].userSelectedIdx = idx;
+      return newQuestions;
+    });
   };
 
-  // 4. 다음 문제 이동 핸들러
-  const handleNext = () => {
-    if (currentStep < questions.length - 1) {
-      // 다음 문제로 이동
+  const handleNext = async () => {
+    if (selectedOption === null) return;
+
+    // 3번째 문제(Step 3) 종료 시점
+    if (currentStep === 2) {
+      // 맞은 개수 합산 계산
+      const correctCount = questions.reduce((acc, q) => {
+        if (q.userSelectedIdx === null) return acc;
+        return acc + (q.options[q.userSelectedIdx].isCorrect ? 1 : 0);
+      }, 0);
+
+      // 결과 페이지로 데이터 전달
+      navigate("/game-result", {
+        state: {
+          questions,
+          correctCount,
+          totalScore: Math.round((correctCount / 3) * 100),
+        },
+      });
+      return;
+    }
+
+    // 다음 질문을 위한 API 호출
+    const userSelectedAnswer =
+      questions[currentStep].options[selectedOption].content;
+
+    try {
+      const nextRaw = await mutation.mutateAsync(userSelectedAnswer);
+      const enriched = enrichQuestion(nextRaw);
+
+      setQuestions((prev) => [...prev, enriched]);
       setCurrentStep((prev) => prev + 1);
       setSelectedOption(null);
       setIsCorrect(null);
-    } else {
-      // 👈 모든 문제가 끝남: 결과 페이지로 이동하며 점수(score) 전달
-      navigate("/game-result", { state: { score: score } });
+    } catch (error) {
+      console.error("데이터 로딩 실패:", error);
+      alert("다음 문제를 불러오지 못했습니다.");
     }
   };
 
-  // 5. Hook이 반환하는 값들
   return {
     questions,
     currentStep,
@@ -95,5 +101,6 @@ export const useGameLogic = () => {
     isCorrect,
     handleOptionClick,
     handleNext,
+    isLoading: mutation.isPending,
   };
 };

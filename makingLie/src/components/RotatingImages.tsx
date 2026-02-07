@@ -11,10 +11,16 @@ const RotatingImages = ({
   interval = 3000,
   className = "",
 }: RotatingImagesProps) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // 🔥 초기 인덱스를 0이 아닌 무작위(Random)로 설정
+  const [currentIndex, setCurrentIndex] = useState(() =>
+    Math.floor(Math.random() * images.length),
+  );
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    // 이미지가 없거나 하나뿐이면 회전할 필요가 없음
+    if (images.length <= 1) return;
+
     const timer = setInterval(() => {
       // 1. 먼저 투명하게 만듦 (사라짐)
       setIsVisible(false);

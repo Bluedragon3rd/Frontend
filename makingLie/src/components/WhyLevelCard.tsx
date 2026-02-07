@@ -1,7 +1,7 @@
 import { useSituationStore } from "../store/useSituationStore";
 
 const WhyLevelCard = () => {
-  const { whyLevel, setWhyLevel } = useSituationStore();
+  const { reason, setReason } = useSituationStore();
 
   return (
     <div
@@ -21,8 +21,8 @@ const WhyLevelCard = () => {
           min={1} // 👈 최소값 1
           max={5} // 👈 최대값 5
           step={1} // 👈 1단위씩 이동
-          value={whyLevel || 3} // 초기값이 0이면 중간(3)으로 보이게 처리
-          onChange={(e) => setWhyLevel(Number(e.target.value))}
+          value={reason || 3} // 초기값이 0이면 중간(3)으로 보이게 처리
+          onChange={(e) => setReason(Number(e.target.value))}
           className="w-full accent-blue-500 cursor-pointer h-3 bg-gray-200 rounded-lg appearance-none mb-2"
         />
 

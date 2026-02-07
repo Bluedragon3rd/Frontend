@@ -2,7 +2,8 @@ import { useSituationStore, type TargetType } from "../store/useSituationStore";
 import Chip from "./Chip";
 
 const TargetTypeCard = () => {
-  const { target, setTarget } = useSituationStore();
+  // 1. 스토어의 실제 필드명(target_audience, setTargetAudience)으로 가져오기
+  const { target_audience, setTargetAudience } = useSituationStore();
 
   const options: TargetType[] = [
     "FM 상사",
@@ -13,7 +14,6 @@ const TargetTypeCard = () => {
   ];
 
   return (
-    // 👇 최상위 div 스타일 수정
     <div
       className="
       w-full h-full 
@@ -21,16 +21,15 @@ const TargetTypeCard = () => {
       flex flex-col justify-center
     "
     >
-      {/* 제목 크기 및 여백 증가 */}
       <div className="text-[22px] font-black mb-6 text-gray-900">대상 유형</div>
 
-      {/* 칩 간격 gap-3 -> gap-4로 살짝 증가 */}
       <div className="flex flex-wrap gap-4">
         {options.map((opt) => (
           <Chip
             key={opt}
-            active={target === opt}
-            onClick={() => setTarget(opt)}
+            // 2. target_audience와 현재 옵션을 비교
+            active={target_audience === opt}
+            onClick={() => setTargetAudience(opt)}
           >
             {opt === "FM 상사" && "👔 FM 상사"}
             {opt === "공감형" && "🫶 공감형"}

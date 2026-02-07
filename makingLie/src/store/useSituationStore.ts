@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type ConditionType = "피곤" | "아픔" | "멘탈" | "멀쩡";
+export type MoodType = "피곤" | "아픔" | "멘탈" | "멀쩡";
 export type TargetType =
   | "FM 상사"
   | "공감형"
@@ -9,27 +9,29 @@ export type TargetType =
   | "회사 팀원";
 
 interface SituationState {
-  whyLevel: number;
-  condition: ConditionType | null;
-  target: TargetType | null;
+  situation: string; // FirstPage에서 입력받는 상황
+  reason: number; // 1~5 (whyLevel)
+  mood: MoodType | null; // 백엔드의 mood
+  target_audience: TargetType | null; // 백엔드의 target_audience
 
-  setWhyLevel: (level: number) => void;
-  setCondition: (condition: ConditionType) => void;
-  setTarget: (target: TargetType) => void;
+  setSituation: (val: string) => void;
+  setReason: (val: number) => void;
+  setMood: (val: MoodType) => void;
+  setTargetAudience: (val: TargetType) => void;
   reset: () => void;
 }
 
 export const useSituationStore = create<SituationState>((set) => ({
-  // 초기값
-  whyLevel: 3,
-  condition: null,
-  target: null,
+  situation: "",
+  reason: 3,
+  mood: null,
+  target_audience: null,
 
-  // 상태 변경 함수들
-  setWhyLevel: (level) => set({ whyLevel: level }),
-  setCondition: (condition) => set({ condition }),
-  setTarget: (target) => set({ target }),
+  setSituation: (val) => set({ situation: val }),
+  setReason: (val) => set({ reason: val }),
+  setMood: (val) => set({ mood: val }),
+  setTargetAudience: (val) => set({ target_audience: val }),
 
-  // 초기화 함수
-  reset: () => set({ whyLevel: 3, condition: null, target: null }),
+  reset: () =>
+    set({ situation: "", reason: 3, mood: null, target_audience: null }),
 }));
