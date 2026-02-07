@@ -5,15 +5,15 @@ const UseExcuseButton = () => {
 
   return (
     <button
-      onClick={() => navigate(-1)} // 👈 뒤로 가기 (결과 페이지로)
+      onClick={() => navigate(-1)}
       className="
         w-full
-        h-full /* 부모 높이에 맞춤 */
+        h-full /* 👈 부모 높이(80px)를 가득 채움 */
         rounded-[24px]
         border-2 border-slate-200
         bg-white
-        py-6
-        text-center
+        /* py-6 제거 -> Flex로 중앙 정렬 */
+        flex justify-center items-center
         text-[22px]
         font-bold
         text-slate-700
