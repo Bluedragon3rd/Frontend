@@ -3,10 +3,10 @@ import ProcessStepsSection from "../components/ProcessStepsSection";
 
 const HomePage = () => {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-violet-50 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-[#f6f7fb] to-[#f4f0ff]">
       {/* HERO */}
       <section className="flex flex-col items-center px-6 pt-24 text-center">
-        <h1 className="text-[64px] font-extrabold tracking-[-0.04em] text-violet-800">
+        <h1 className="text-[84px] font-extrabold tracking-[-0.04em] text-violet-800">
           ExcuseLab
         </h1>
 
@@ -24,7 +24,7 @@ const HomePage = () => {
       </section>
 
       {/* GUIDE TITLE */}
-      <section className="mt-32 px-6 text-center">
+      <section className="mt-20 px-6 text-center">
         <div className="flex items-center justify-center gap-3">
           <span className="text-[28px]">💡</span>
           <h2 className="text-[36px] font-extrabold tracking-[-0.03em] text-slate-900">
