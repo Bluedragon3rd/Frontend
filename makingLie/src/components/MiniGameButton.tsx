@@ -5,9 +5,9 @@ const MiniGameButton = () => {
 
   return (
     <button
-      onClick={() => navigate("/mini-game")}
+      onClick={() => navigate("/minigame")}
       className="
-        w-full max-w-[718px] /* 👈 고정폭 대신 부모에 맞추되 최대폭 설정 */
+        w-full max-w-[718px]
         h-[92px]
         rounded-3xl
         bg-gradient-to-r from-orange-500 to-red-500
@@ -20,7 +20,7 @@ const MiniGameButton = () => {
         transition
         hover:brightness-110
         active:scale-[0.98]
-        flex items-center justify-center /* 👈 텍스트 수직 중앙 정렬 */
+        flex items-center justify-center
       "
     >
       <span className="flex items-center justify-center gap-3">

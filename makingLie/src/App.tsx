@@ -6,6 +6,9 @@ import TestPage from "./pages/TestPage";
 import ResultPage from "./pages/ResultPage";
 import SimulationPage from "./pages/SimulationPage";
 import HonestChoice from "./pages/HonestChoice";
+import MinigamePage from "./pages/MinigamePage";
+import GamePage from "./pages/GamePage";
+import GameResultPage from "./pages/GameResultPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +37,18 @@ const router = createBrowserRouter([
   {
     path: "honest",
     element: <HonestChoice />,
+  },
+  {
+    path: "minigame",
+    element: <MinigamePage />,
+  },
+  {
+    path: "game",
+    element: <GamePage />,
+  },
+  {
+    path: "game-result",
+    element: <GameResultPage />,
   },
 ]);
 function App() {
