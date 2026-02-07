@@ -12,7 +12,7 @@ const WhyLevelCard = () => {
     "
     >
       <div className="text-[22px] font-black mb-6 text-gray-900">
-        지각 이유 성격
+        얼마나 창의적인 상황을 원하시나요?
       </div>
 
       <div className="px-2">
