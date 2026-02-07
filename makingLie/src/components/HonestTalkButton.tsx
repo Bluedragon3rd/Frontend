@@ -20,13 +20,13 @@ const HonestTalkButton = () => {
           active:scale-[0.98]
         "
       >
-        <div className="flex flex-col items-center gap-3">
-          <div className="text-[29px] font-semibold text-green-900">
-            💚 솔직한 대화 추천
+        <div className="flex flex-col items-center gap-1">
+          <div className="text-[35px] font-semibold text-green-900">
+            🔥 정면 돌파하기
           </div>
 
-          <div className="text-[20px] text-green-700">
-            정중한 거절로 변환하기 →
+          <div className="text-[24px] text-green-700">
+            "오늘은 양심 ON"
           </div>
         </div>
       </button>
