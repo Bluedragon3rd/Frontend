@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useSituationStore } from "../store/useSituationStore";
 
 const WhyLevelCard = () => {
-  const [slider, setSlider] = useState(50);
+  // ⭐️ Zustand에서 꺼내오기
+  const { whyLevel, setWhyLevel } = useSituationStore();
+
   return (
     <div className="bg-white rounded-[18px] p-5 shadow-[0_14px_28px_rgba(0,0,0,0.06)]">
       <div className="text-lg font-black mb-3.5 text-gray-900">
@@ -11,8 +13,8 @@ const WhyLevelCard = () => {
         type="range"
         min={0}
         max={100}
-        value={slider}
-        onChange={(e) => setSlider(Number(e.target.value))}
+        value={whyLevel} // store 값 연결
+        onChange={(e) => setWhyLevel(Number(e.target.value))} // action 연결
         className="w-full accent-blue-500 cursor-pointer h-2 bg-gray-200 rounded-lg appearance-none"
       />
       <div className="flex justify-between mt-2.5 font-bold text-sm">

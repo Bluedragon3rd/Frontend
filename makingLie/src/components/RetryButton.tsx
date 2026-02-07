@@ -2,17 +2,18 @@ import { useNavigate } from "react-router-dom";
 
 interface RetryButtonProps {
   className?: string;
-  onClick?: () => void; // onClick도 전달받을 수 있게 추가하면 좋습니다
 }
 
-const RetryButton = ({ className, onClick }: RetryButtonProps) => {
+const RetryButton = ({ className }: RetryButtonProps) => {
   const navigate = useNavigate();
 
   return (
     // 1. 여기서 부모가 준 크기(391px)를 받음
     <div className={className}>
       <button
-        onClick={onClick || (() => navigate("/first-step"))}
+        onClick={() => {
+          navigate("/second-step");
+        }}
         className="
           w-full h-full  /* 👈 핵심 수정: 부모 크기에 꽉 차게 변경 */
           rounded-2xl

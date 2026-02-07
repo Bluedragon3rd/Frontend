@@ -1,19 +1,22 @@
-import MiniGameCTAButton from "./MiniGameButton";
+import MiniGameButton from "./MiniGameButton";
 
 type Props = {
-  question: string; // 예: "그래서 병원은 어디였어요?"
+  question: string;
 };
 
 const MiniGameBox = ({ question }: Props) => {
   return (
     <section
       className="
-        w-full
+        w-[806px]
+        min-h-[240px] /* 👈 h-[240px] 대신 min-h를 써서 내용이 길어지면 늘어나게 변경 */
+        h-auto        /* 👈 높이 자동 조절 */
         rounded-[40px]
         border-4 border-red-300
         bg-[#FCEBDD]
         px-10 py-10
         shadow-[0_16px_40px_rgba(0,0,0,0.10)]
+        flex flex-col justify-between /* 👈 내부 요소 정렬 추가 */
       "
     >
       {/* 상단 텍스트 영역 */}
@@ -25,15 +28,15 @@ const MiniGameBox = ({ question }: Props) => {
             시스템 후속 질문 발생
           </div>
 
-          <div className="text-[34px] font-extrabold text-slate-900 tracking-[-0.03em]">
+          <div className="text-[34px] font-extrabold text-slate-900 tracking-[-0.03em] leading-tight break-keep">
             👉 {question}
           </div>
         </div>
       </div>
 
-      {/* 버튼 */}
-      <div className="mt-10">
-        <MiniGameCTAButton />
+      {/* 버튼 영역 (상단 여백 mt-10 유지) */}
+      <div className="mt-10 w-full flex justify-center">
+        <MiniGameButton />
       </div>
     </section>
   );
