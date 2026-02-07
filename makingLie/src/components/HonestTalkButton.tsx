@@ -9,7 +9,7 @@ const HonestTalkButton = () => {
         onClick={() => navigate("/honest")}
         className="
           w-[806px]
-          h-[140px]
+          h-[150px]
           rounded-2xl
           border-4 border-green-300
           bg-green-50
@@ -20,12 +20,12 @@ const HonestTalkButton = () => {
           active:scale-[0.98]
         "
       >
-        <div className="flex flex-col items-center gap-2">
-          <div className="text-[22px] font-semibold text-green-900">
+        <div className="flex flex-col items-center gap-3">
+          <div className="text-[29px] font-semibold text-green-900">
             💚 솔직한 대화 추천
           </div>
 
-          <div className="text-[18px] text-green-700">
+          <div className="text-[20px] text-green-700">
             정중한 거절로 변환하기 →
           </div>
         </div>

@@ -35,7 +35,7 @@ const ResultPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50 pb-20">
+    <main className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-b from-[#f6f7fb] to-[#f4f0ff] pb-20">
       <div className="mt-10 w-[806px] bg-white rounded-[32px] p-12 shadow-[0_10px_40px_rgba(168,85,247,0.15)] border border-purple-100 flex flex-col">
         <div className="self-start bg-[#9F21E3] text-white px-6 py-3 rounded-full font-bold text-lg mb-8 shadow-md">
           생성된 핑계
@@ -114,15 +114,15 @@ const ResultPage = () => {
       <div className="flex flex-row gap-6 w-[806px] justify-between">
         <GradationButton
           title="반응 시뮬 보기"
-          className="!w-[391px] !h-[104px] text-[24px] rounded-[20px]"
+          className="!w-[391px] !h-[104px] text-[55px] rounded-[20px]"
           onClick={() => navigate("/simulation")}
         />
         <RetryButton
-          className="!w-[391px] !h-[104px] text-[24px] rounded-[20px]"
+          className="!w-[391px] !h-[104px] text-[55px] rounded-[20px]"
           onClick={handleRetry}
         />
       </div>
-    </div>
+    </main>
   );
 };
 
