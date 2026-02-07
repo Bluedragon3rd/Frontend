@@ -35,7 +35,7 @@ const ProbabilityCard = ({ probability, comment }: Props) => {
     <section
       className="
         w-[806px]
-        h-[240px]
+        h-[220px]
         rounded-[32px]
         bg-white
         px-10 py-10
