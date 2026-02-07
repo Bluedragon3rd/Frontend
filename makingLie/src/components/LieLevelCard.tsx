@@ -6,7 +6,8 @@ const LieLevelCard = ({ level }: Props) => {
   return (
     <div
       className="
-        w-full
+        w-[339px]
+        h-[188px]
         rounded-3xl
         bg-white
         px-10 py-8
