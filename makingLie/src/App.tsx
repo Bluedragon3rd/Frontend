@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage"; // 페이지 불러오기
 import FirstPage from "./pages/FirstPage";
 import SecondPage from "./pages/SecondPage";
+import TestPage from "./pages/TestPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "second-step",
     element: <SecondPage />,
+  },
+  {
+    path: "test",
+    element: <TestPage />,
   },
 ]);
 function App() {
