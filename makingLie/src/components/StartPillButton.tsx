@@ -5,7 +5,7 @@ const StartPillButton = () => {
 
   return (
     <button
-      onClick={() => navigate("/game")}
+      onClick={() => navigate("/first-step")}
       className="
         inline-flex
         items-center
